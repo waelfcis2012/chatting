@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>WebRTC Chat - NestJS</title>
+  <style>
+    video { width: 45%; margin: 10px; border: 2px solid #ccc; }
+    input { padding: 5px; }
+  </style>
+</head>
+<body>
+  <h2>Simple WebRTC Chat</h2>
+
+  <video id="localVideo" autoplay muted playsinline></video>
+  <video id="remoteVideo" autoplay playsinline></video>
+  <br />
+  <input type="text" id="peerId" placeholder="Enter peer ID" />
+  <button id="callBtn">Call</button>
+
+  <script src="socket.io.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
