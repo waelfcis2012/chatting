@@ -40,6 +40,77 @@
       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
 
+    .room-info {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 20px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .room-id {
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .room-id span {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-family: monospace;
+      font-size: 1.1rem;
+    }
+
+    .participants-count {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1rem;
+    }
+
+    .connected-peers {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .peers-title {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+
+    .peers-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .peer-item {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .peer-connected {
+      background: rgba(76, 175, 80, 0.3);
+      border-color: rgba(76, 175, 80, 0.5);
+    }
+
+    .peer-connecting {
+      background: rgba(255, 152, 0, 0.3);
+      border-color: rgba(255, 152, 0, 0.5);
+    }
+
+    .peer-disconnected {
+      background: rgba(244, 67, 54, 0.3);
+      border-color: rgba(244, 67, 54, 0.5);
+    }
+
     .video-container {
       position: relative;
       width: 100%;
@@ -140,6 +211,15 @@
 
     #callBtn:hover {
       background: linear-gradient(45deg, #45a049, #4CAF50);
+    }
+
+    .create-room-btn {
+      background: linear-gradient(45deg, #2196F3, #1976D2);
+      color: white;
+    }
+
+    .create-room-btn:hover {
+      background: linear-gradient(45deg, #1976D2, #2196F3);
     }
 
     .incoming-call {
@@ -260,6 +340,17 @@
       display: block;
     }
 
+    .legacy-controls {
+      display: none;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .legacy-controls.show {
+      display: block;
+    }
+
     @media (max-width: 768px) {
       .container {
         padding: 20px;
@@ -296,6 +387,19 @@
   <div class="container">
     <h2><i class="fas fa-video"></i> Video Chat</h2>
     
+    <div class="room-info" id="roomInfo">
+      <div class="room-id">
+        Room: <span id="roomIdDisplay">Loading...</span>
+      </div>
+      <div class="participants-count" id="participantsCount">
+        Participants: <span id="participantsCountNum">0</span>
+      </div>
+      <div class="connected-peers" id="connectedPeers">
+        <div class="peers-title">Connected Peers:</div>
+        <div class="peers-list" id="peersList"></div>
+      </div>
+    </div>
+    
     <div class="video-container">
       <div class="status-indicator" id="statusIndicator"></div>
       <video id="remoteVideo" autoplay playsinline></video>
@@ -307,12 +411,20 @@
     </div>
     
     <div class="controls">
-      <div class="input-group">
-        <input type="text" id="peerId" placeholder="Enter peer ID to call" />
-      </div>
-      <button id="callBtn" class="btn">
-        <i class="fas fa-phone"></i> Call
+      <button id="createRoomBtn" class="btn create-room-btn">
+        <i class="fas fa-plus"></i> Create New Room
       </button>
+    </div>
+
+    <div class="legacy-controls" id="legacyControls">
+      <div class="controls">
+        <div class="input-group">
+          <input type="text" id="peerId" placeholder="Enter peer ID to call" />
+        </div>
+        <button id="callBtn" class="btn">
+          <i class="fas fa-phone"></i> Call
+        </button>
+      </div>
     </div>
   </div>
 
